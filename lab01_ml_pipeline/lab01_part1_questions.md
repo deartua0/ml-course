@@ -19,8 +19,8 @@ Useful links:
 
 ## ex. 1
 
-$$  
-y = x^Tx,  \quad x \in \mathbb{R}^N 
+$$
+y = x^Tx,  \quad x \in \mathbb{R}^N
 $$
 
 Градиент считаем столбцом: $dy=(\nabla_x y)^T dx$.
@@ -36,7 +36,9 @@ $$
 
 ## ex. 2
 
-$$ y = tr(AB) \quad A,B \in \mathbb{R}^{N \times N} $$
+$$
+y = tr(AB) \quad A,B \in \mathbb{R}^{N \times N}
+$$
 
 Для матрицы используем соглашение $dy=\operatorname{tr}((\nabla_A y)^T dA)$.
 $$
@@ -48,8 +50,8 @@ $$
 
 ## ex. 3
 
-$$  
-y = x^TAc , \quad A\in \mathbb{R}^{N \times N}, x\in \mathbb{R}^{N}, c\in \mathbb{R}^{N} 
+$$
+y = x^TAc , \quad A\in \mathbb{R}^{N \times N}, x\in \mathbb{R}^{N}, c\in \mathbb{R}^{N}
 $$
 
 При фиксированных $A,c$:
@@ -66,7 +68,7 @@ $$
 Через след: $dy=x^T(dA)c=\operatorname{tr}(cx^T dA)$,
 поэтому $(\nabla_A y)^T=cx^T$. Размер градиента — $N\times N$.
 
-Hint for the latter (one of the ways): use *ex. 2* result and the fact 
+Hint for the latter (one of the ways): use *ex. 2* result and the fact
 $$
 tr(ABC) = tr (CAB)
 $$
@@ -78,7 +80,7 @@ $$
 J = || X - AS ||_F^2  , \quad A\in \mathbb{R}^{N \times R} , \quad S\in \mathbb{R}^{R \times M}
 $$
 $$
-\frac{dJ}{dS} = ? 
+\frac{dJ}{dS} = ?
 $$
 
 You may use one of the following approaches:
@@ -102,8 +104,8 @@ $$
 #### First approach
 Using ex.2 and the fact:
 $$
-|| X ||_F^2 = tr(XX^T) 
-$$ 
+|| X ||_F^2 = tr(XX^T)
+$$
 it is easy to derive gradients (you can find it in one of the refs).
 
 #### Second approach
@@ -223,11 +225,20 @@ Notice the structured patterns in the distance matrix, where some rows or column
 ### Question 2
 
 We can also use other distance metrics such as L1 distance.
-For pixel values $p_{ij}^{(k)}$ at location $(i,j)$ of some image $I_k$, 
+For pixel values $p_{ij}^{(k)}$ at location $(i,j)$ of some image $I_k$,
 
-the mean $\mu$ across all pixels over all images is $$\mu=\frac{1}{nhw}\sum_{k=1}^n\sum_{i=1}^{h}\sum_{j=1}^{w}p_{ij}^{(k)}$$
-And the pixel-wise mean $\mu_{ij}$ across all images is 
-$$\mu_{ij}=\frac{1}{n}\sum_{k=1}^np_{ij}^{(k)}.$$
+the mean $\mu$ across all pixels over all images is
+
+$$
+\mu=\frac{1}{nhw}\sum_{k=1}^n\sum_{i=1}^{h}\sum_{j=1}^{w}p_{ij}^{(k)}
+$$
+
+And the pixel-wise mean $\mu_{ij}$ across all images is
+
+$$
+\mu_{ij}=\frac{1}{n}\sum_{k=1}^np_{ij}^{(k)}.
+$$
+
 The general standard deviation $\sigma$ and pixel-wise standard deviation $\sigma_{ij}$ is defined similarly.
 
 Which of the following preprocessing steps will not change the performance of a Nearest Neighbor classifier that uses L1 distance? Select all that apply.
@@ -239,17 +250,17 @@ Which of the following preprocessing steps will not change the performance of a 
 
 *Your Answer:*
 
-
 *Your Explanation:*
-
 
 **Ответ: 1, 2, 3**, если одинаковое преобразование применяется к train и test,
 а $\sigma>0$; статистики оцениваются только по train.
 
 Для L1 $d(x,z)=\sum_j|x_j-z_j|$ общий сдвиг сокращается:
+
 $$
 d(x-a,z-a)=\sum_j|(x_j-a_j)-(z_j-a_j)|=d(x,z).
 $$
+
 Это верно и для скалярного среднего (1), и для вектора попиксельных средних (2).
 Общее положительное масштабирование (3) умножает все расстояния на $1/\sigma$,
 поэтому порядок соседей и совпадения расстояний сохраняются.
